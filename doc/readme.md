@@ -3,9 +3,9 @@
 Clojure client library for the [Squash](http://www.squash.io/) bug
 killer by [Square](http://www.square.com).
 
-*NOTE*: This is the result of trying out Squash and evaluating it for
-Clojure applications. It has not yet been thoroughly tested for
-production use.
+**NOTE**: This is currently the result of a few hours of hacking with
+the purpose of trying out Squash for Clojure applications. No
+thourough testing has been performed. 
 
 ## Artifacts
 
