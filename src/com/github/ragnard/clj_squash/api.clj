@@ -75,15 +75,23 @@
   "Return a function that when applied to an Exception will send a
   notification to a Squash instance.
 
+  An update function can also be passed as an optional second
+  argument. If given, it will be called with a map of the data that is
+  to be sent to Squash, and and is expected to return a potentially
+  updated version of this map. This can be used to extend, access or
+  in any way alter the data sent in the notification.
+
   Options: 
     :api-key        - required
     :api-host       - required
     :environment    - required
     :revision       - optional, but requires current working directory
                       to be a Git repository if not specified explicitly
-    :error-handler  - optional, function of two arguments called when a
-                      submission fails. First argument is immediate,
-                      second argument original exception
+    :error-handler  - optional, function of two arguments called when
+                      the submission of a notification fails. First
+                      argument is the immediate exception, second
+                      argument the original exception.
+                      exception
     :socket-timeout - optional
     :conn-timeout   - optional"
   [{:keys [api-key
@@ -104,21 +112,25 @@
                        {:revision (or revision
                                       (git-version)
                                       (throw (Exception. "Unable to
-                                      determine git version. You can
+                                      determine Git version. You can
                                       specify a revision manually
                                       using the :revision key.")))})]
-    (fn [exception]
-      (try
-        (let [data (notification-data options exception)]
-          (http/post api-url
-                     {:body (json/generate-string data)
-                      :content-type :json
-                      :socket-timeout socket-timeout
-                      :conn-timeout conn-timeout
-                      :accept :json}))
-        (catch Exception e
-          (when exception-handler
-            (exception-handler e exception)))))))
+    (fn notify
+      ([exception]
+         (notify exception identity))
+      ([exception update-fn]
+         (try
+           (let [data-fn (comp (or update-fn identity) notification-data)
+                 data (data-fn options exception)]
+             (http/post api-url
+                        {:body (json/generate-string data)
+                         :content-type :json
+                         :socket-timeout socket-timeout
+                         :conn-timeout conn-timeout
+                         :accept :json}))
+           (catch Exception e
+             (when exception-handler
+               (exception-handler e exception))))))))
 
 (comment
 
@@ -127,4 +139,4 @@
                           :environment "dev"})]
     (notify (ex-info "Invalid use of robot" {:robot-id 42})))
 
-  )
+ )
