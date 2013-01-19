@@ -32,8 +32,8 @@
   [exception]
   (let [data (stacktrace/parse-exception exception)]
     (mapv (fn [el]
-            [(:file el)
-             (:line el)
+            [(or (:file el) "unknown")
+             (or (:line el) 0)
              (stacktrace-repl/method-str el)])
           (:trace-elems data))))
 
@@ -108,13 +108,14 @@
                                       specify a revision manually
                                       using the :revision key.")))})]
     (fn [exception]
-      (try 
-        (http/post api-url
-                   {:body (json/generate-string (notification-data options exception))
-                    :content-type :json
-                    :socket-timeout socket-timeout
-                    :conn-timeout conn-timeout
-                    :accept :json})
+      (try
+        (let [data (notification-data options exception)]
+          (http/post api-url
+                     {:body (json/generate-string data)
+                      :content-type :json
+                      :socket-timeout socket-timeout
+                      :conn-timeout conn-timeout
+                      :accept :json}))
         (catch Exception e
           (when exception-handler
             (exception-handler e exception)))))))
