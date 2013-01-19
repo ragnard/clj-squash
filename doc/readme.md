@@ -45,6 +45,6 @@ notifications of unhandled exceptions is available in the
 
 ## License
 
-Copyright © 2013 FIXME
+Copyright © 2013 Ragnar Dahlén
 
 Distributed under the Eclipse Public License, the same as Clojure.
