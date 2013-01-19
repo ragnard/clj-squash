@@ -29,6 +29,8 @@ Squash instance:
   (notify (ex-info "Invalid use of robot" {:robot-id 42})))
 ````
 
+See docstring for `notifier` for info on available options.
+
 Any data conveyed with `ex-info` will be submitted as `user_data` to
 Squash and is therefore nicely available in the UI.
 
