@@ -1,4 +1,4 @@
-(ns net.blahonga.clj-squash.api
+(ns com.github.ragnard.clj-squash.api
   (:require [clj-http.client     :as http]
             [clj-stacktrace.core :as stacktrace]
             [clj-stacktrace.repl :as stacktrace-repl]
@@ -25,7 +25,6 @@
   (try
     (s/trim (:out (shell/sh "git" "rev-parse" "--short" "HEAD")))
     (catch Exception _ nil)))
-
 
 ;; Functions for creating exception data in Squash format/structure
 
