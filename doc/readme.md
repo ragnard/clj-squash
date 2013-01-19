@@ -3,6 +3,10 @@
 Clojure client library for the [Squash](http://www.squash.io/) bug
 killer by [Square](http://www.square.com).
 
+*NOTE*: This is the result of trying out Squash and evaluating it for
+Clojure applications. It has not yet been thoroughly tested for
+production use.
+
 ## Artifacts
 
 clj-squash is available on [Clojars](http://clojars.org) and the
