@@ -25,13 +25,14 @@ Squash instance:
   (notify (ex-info "Invalid use of robot" {:robot-id 42})))
 ````
 
-Any data conveyed with ex-info will be submitted as `user_data` to
+Any data conveyed with `ex-info` will be submitted as `user_data` to
 Squash and is therefore nicely available in the UI.
 
 ### Ring Middleware
 
-A ring middleware for sending notifiactions about unhandled exceptions
-is available in the `clj-squash.ring` namespace. 
+A [http://github.com/ring-clojure](Ring) middleware for sending
+notifications of unhandled exceptions is available in the
+`com.ragnard.clj-squash.ring` namespace.
 
 ```` clojure
 (require '[com.github.ragnard.clj-squash.ring :as squash])
