@@ -139,4 +139,10 @@
                           :environment "dev"})]
     (notify (ex-info "Invalid use of robot" {:robot-id 42})))
 
- )
+  (let [notify (squash/notifier {:api-host "http://localhost:8081"
+                                 :api-key "fa2818ce-5480-4aa0-87a9-43a342bf425a"
+                                 :environment "dev"})]
+    (notify (ex-info "Invalid use of robot" {:robot-id 42})
+            (fn [notification-data]
+              (update-in notification-data [:user_data] dissoc :robot-bank-account))))
+  )
