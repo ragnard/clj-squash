@@ -34,7 +34,7 @@ Squash and is therefore nicely available in the UI.
 
 ### Ring Middleware
 
-A [http://github.com/ring-clojure](Ring) middleware for sending
+A [Ring](http://github.com/ring-clojure) middleware for sending
 notifications of unhandled exceptions is available in the
 `com.ragnard.clj-squash.ring` namespace.
 
