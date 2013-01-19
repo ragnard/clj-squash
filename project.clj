@@ -1,4 +1,4 @@
-(defproject clj-squash "0.1.0-SNAPSHOT"
+(defproject clj-squash "0.1.0"
   :description "Clojure client library for Square Squash"
   :url "http://github.com/ragnard/clj-squash"
   :license {:name "Eclipse Public License"
