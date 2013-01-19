@@ -12,7 +12,7 @@ thourough testing has been performed.
 clj-squash is available on [Clojars](http://clojars.org) and the
 current version is:
 
-    [clj-squash "0.1.0"]
+    [clj-squash "0.1.1"]
 
 ## Usage
 
