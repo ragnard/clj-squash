@@ -7,5 +7,7 @@
     (fn [req]
       (try
         (handler req)
-        (catch Exception e (notify e))))))
+        (catch Exception e
+          (notify e)
+          (throw e))))))
 
