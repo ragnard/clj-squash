@@ -5,7 +5,7 @@
   "Send notifications of any unhandeled exceptions to a Squash
   instance specified by options. Exception will be rethrown.
 
-  See net.blahonga.clj-squash.api/notifier for options"
+  See com.github.ragnard.clj-squash.api/notifier for options"
   [handler options]
   (let [notify (squash/notifier options)] 
     (fn [req]
